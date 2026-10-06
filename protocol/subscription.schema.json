@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "terminal"
+        },
+        "event": {
+          "enum": [
+            "onDynamicData",
+            "onDynamicExit",
+            "onDynamicReplayData"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "zcode-task"
+        },
+        "event": {
+          "enum": [
+            "onDynamicStreamEvent",
+            "onDynamicTaskTerminalOutcome",
+            "onDynamicTaskReady",
+            "onDynamicTaskEvent",
+            "onDynamicWorkspaceEvent"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "window-controller"
+        },
+        "event": {
+          "enum": [
+            "onDynamicControllerFrame"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "zcode-agent"
+        },
+        "event": {
+          "enum": [
+            "onDynamicStorageStartupState",
+            "onDynamicPluginOperationProgress",
+            "onDynamicSessionEvent",
+            "onDynamicConversationFrame",
+            "onDynamicSessionsIndexFrame",
+            "onDynamicWorkspaceConfigFrame",
+            "onAgentRuntimeRestarted",
+            "onAgentRuntimeLifecycle"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "model-selection"
+        },
+        "event": {
+          "enum": [
+            "onDidChange"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "provider-settings"
+        },
+        "event": {
+          "enum": [
+            "onDidChange"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "plugin-management"
+        },
+        "event": {
+          "enum": [
+            "onDynamicPluginOperationProgress"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "file-watcher"
+        },
+        "event": {
+          "enum": [
+            "onDynamicChange"
+          ]
+        },
+        "arg": {}
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "event"
+      ],
+      "properties": {
+        "service": {
+          "const": "broadcast"
+        },
+        "event": {
+          "enum": [
+            "onMessage"
+          ]
+        },
+        "arg": {}
+      }
+    }
+  ]
+}

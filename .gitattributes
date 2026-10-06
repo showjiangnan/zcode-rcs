@@ -1,0 +1,8 @@
+# Runtime bundles contain significant whitespace in embedded strings and licenses.
+web/** linguist-generated=true -whitespace
+sdk/index.js linguist-generated=true -whitespace
+protocol/** linguist-generated=true
+# The preserved license excerpts contain literal seven-character Setext headings.
+THIRD-PARTY-NOTICES.md -whitespace conflict-marker-size=32
+sdk/THIRD-PARTY-NOTICES.md -whitespace conflict-marker-size=32
+web/THIRD-PARTY-NOTICES.md conflict-marker-size=32

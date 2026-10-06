@@ -1,0 +1,1 @@
+import{n as e,t}from"./settings-2-B7MVOK8U.js";export{e as __iconNode,t as default};

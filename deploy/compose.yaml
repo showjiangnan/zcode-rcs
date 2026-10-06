@@ -1,0 +1,17 @@
+services:
+  rcs:
+    build: ..
+    restart: unless-stopped
+    environment:
+      RCS_PUBLIC_ORIGIN: ${RCS_PUBLIC_ORIGIN:?Set the HTTPS public origin}
+    ports:
+      - "127.0.0.1:8030:8030"
+    volumes:
+      - rcs-data:/data
+    secrets:
+      - rcs_keys
+secrets:
+  rcs_keys:
+    file: ${RCS_KEYS_FILE:?Set the path to your server hash configuration}
+volumes:
+  rcs-data:

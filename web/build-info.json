@@ -1,0 +1,8 @@
+{
+  "version": "3.14.4",
+  "source": "https://github.com/showjiangnan/zcode-feiyu",
+  "entry": "packages/web/src/rcs/RcsApp.tsx",
+  "bridgeVersion": 1,
+  "rpcCodec": 1,
+  "agentWire": 3
+}

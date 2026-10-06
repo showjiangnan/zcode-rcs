@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "workspacePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "workspaceIdentity": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "remoteSessionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "workspacePath"
+  ],
+  "additionalProperties": false
+}

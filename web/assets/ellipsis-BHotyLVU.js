@@ -1,0 +1,1 @@
+import{n as e,t}from"./ellipsis-BPOaAtRN.js";export{e as __iconNode,t as default};

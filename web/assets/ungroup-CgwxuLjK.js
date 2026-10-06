@@ -1,0 +1,1 @@
+import{t as e}from"./createLucideIcon-D6XtQox5.js";var t=[[`rect`,{width:`8`,height:`6`,x:`5`,y:`4`,rx:`1`,key:`nzclkv`}],[`rect`,{width:`8`,height:`6`,x:`11`,y:`14`,rx:`1`,key:`4tytwb`}]],n=e(`ungroup`,t);export{t as __iconNode,n as default};

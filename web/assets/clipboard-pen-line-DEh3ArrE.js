@@ -1,0 +1,1 @@
+import{n as e,t}from"./clipboard-pen-line-98CQqiJ_.js";export{e as __iconNode,t as default};

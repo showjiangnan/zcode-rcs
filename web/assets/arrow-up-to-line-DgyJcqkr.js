@@ -1,0 +1,1 @@
+import{n as e,t}from"./arrow-up-to-line-uhdwAt0z.js";export{e as __iconNode,t as default};

@@ -1,0 +1,20 @@
+[project]
+name = "zcode-rcs"
+version = "1.0.0"
+description = "User-owned authenticated bridge for an existing ZCode desktop Host"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.115,<1", "uvicorn[standard]>=0.34,<1", "pydantic>=2.10,<3"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "httpx>=0.28,<1", "websockets>=14,<17", "pytest-asyncio>=0.25,<2"]
+
+[project.scripts]
+zcode-rcs = "zcode_rcs.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,68 @@
+# ZCode RCS
+
+A user-operated Python bridge with a complete responsive ZCode Web UI. Keep the Feiyu ZCode desktop app open, enter your bridge endpoint and key, and access allowed workspaces from desktop or mobile browsers. Agents, model requests, tools and session state run on your own execution computer. The server authenticates clients and forwards data.
+
+[中文](README.md) · [Desktop source and installation](https://github.com/showjiangnan/zcode-feiyu) · [API and SDK](docs/API.md) · [Deployment](docs/DEPLOYMENT.md) · [Security](docs/SECURITY.md)
+
+## Local setup
+
+Python 3.12+ and uv are required. Compatible Web and SDK assets are included; the server does not require Node or Electron.
+
+```bash
+uv sync --frozen
+uv run zcode-rcs keygen --output data/keys.json --secret-output data/owner.key
+export RCS_PUBLIC_ORIGIN=http://127.0.0.1:8030
+export RCS_ALLOW_LOOPBACK_HTTP=1
+export RCS_KEYS_FILE="$PWD/data/keys.json"
+uv run zcode-rcs serve --port 8030
+```
+
+Keep `owner.key` on your devices. The server stores SHA-256 digests in `keys.json`; generated credential files use mode 0600. HTTP is permitted only for explicit loopback development.
+
+1. Open **Settings → Remote services → RCS** in a compatible Feiyu desktop app.
+2. Enter the endpoint and generated key, name the device, select allowed workspaces, validate and save with RCS enabled. No workspace is exposed by default.
+3. Open the bridge origin, enter the same key and select the online device, window and workspace.
+4. Keep desktop ZCode open. Offline or sleeping computers show a reconnect state; the bridge does not start cloud agents or accept offline tasks.
+
+## Production
+
+Deploy at a dedicated HTTPS origin root, such as `https://zcode.example.com`:
+
+```bash
+export RCS_PUBLIC_ORIGIN=https://zcode.example.com
+export RCS_KEYS_FILE="$PWD/data/keys.json"
+docker compose -f deploy/compose.yaml up -d --build
+```
+
+The container exposes port 8030 on loopback only. Include [the Nginx example](deploy/nginx.conf) inside your TLS server block. Use one worker; horizontal routing is not implemented. See [deployment and operations](docs/DEPLOYMENT.md) for backups, updates and key rotation.
+
+## Capabilities
+
+| Capability | Implementation |
+| --- | --- |
+| Responsive conversations | Shared desktop React Root and components, mobile/desktop layouts, independent bridge authentication |
+| Sessions and orchestration | Same desktop runtime and command admission, standard/coordinator/swarm, history, permissions, stop and recovery |
+| Memory, workflows and images | Existing Host services and settings; image/model providers remain configured on the execution computer |
+| Files and artifacts | Host path validation, existing transactional attachment uploads, bounded media ranges, content-hash guarded text editing API |
+| Terminal recovery | Host-owned PTYs, reconnect to the same ID, bounded sequence replay and deduplication; disconnect does not kill the shell |
+| Public integrations | REST control plane, explicit RPC allowlist and schemas, standalone SDK with injectable fetch/WebSocket transport |
+| Access control | OS-protected desktop secret, server key digests, expiring/revocable sessions, workspace grants, Origin checks and bounded flow control |
+
+This is a bridge to your local ZCode. Native OS dialogs and permissions remain desktop capabilities. SSH and existing mobile chat bots are managed through desktop settings. A finished mini-program or mobile app is not included; the same public API is available for custom clients.
+
+## Updating Web and SDK assets
+
+Python source is in `zcode_rcs/`. The authoritative TypeScript UI/SDK source is in the desktop repository. This repository ships standalone deployable `web/`, `sdk/`, and `protocol/` assets without maintaining another conversation UI:
+
+```bash
+pnpm --filter @zcode/web build
+node scripts/build-rcs-assets.mjs /path/to/zcode-rcs
+```
+
+Compatibility: bridge **1**, RPC codec **1**, Agent wire **3**. Check `/api/rcs/v1/meta` and `web/build-info.json`. Internal methods are not automatically exposed. Local specifications and test records are excluded from production publication.
+
+## Data and trust
+
+The bridge stores authentication/revocation metadata in SQLite and keeps bounded routing buffers in memory. It does not persist conversations, prompts, repository files, memories or terminal output. Requested content passes through your server. TLS terminates there; the server operator is trusted and this version does not promise end-to-end encryption. Anyone holding your valid shared key can control its identity group.
+
+Apache-2.0. Preserve [LICENSE](LICENSE) and [third-party notices](web/THIRD-PARTY-NOTICES.md).

@@ -1,0 +1,1 @@
+import{n as e,t}from"./briefcase-business-Bdi2e3hw.js";export{e as __iconNode,t as default};

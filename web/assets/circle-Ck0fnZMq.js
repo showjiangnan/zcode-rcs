@@ -1,0 +1,1 @@
+import{t as e}from"./createLucideIcon-D6XtQox5.js";var t=[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}]],n=e(`circle`,t);export{t as n,n as t};

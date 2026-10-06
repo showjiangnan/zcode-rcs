@@ -1,0 +1,826 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "file"
+        },
+        "method": {
+          "enum": [
+            "searchWorkspaceFiles",
+            "readdir",
+            "stat",
+            "checkFilesExist",
+            "resolvePath",
+            "readTextFile",
+            "readMediaPreview",
+            "readFileRange",
+            "readBinaryPreview",
+            "listWorkspaceFilesLength",
+            "listWorkspaceFilesRange",
+            "readWorkspaceFileSearchIgnore",
+            "applyWorkspaceFileSearchIgnoreTransform",
+            "writeWorkspaceFileSearchIgnore",
+            "writeTextFile"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "git"
+        },
+        "method": {
+          "enum": [
+            "getRepositorySummary",
+            "getWorkspaceRepositoryInfo",
+            "getLocalBranches",
+            "getCommitGraph",
+            "switchBranch",
+            "createBranchAndSwitch",
+            "getChanges",
+            "getIgnoredPaths",
+            "getDiff",
+            "getBranchComparison",
+            "stagePaths",
+            "unstagePaths",
+            "discardPaths",
+            "generateCommitMessage",
+            "commit",
+            "push",
+            "getIdentity",
+            "refresh"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "git-checkpoint"
+        },
+        "method": {
+          "enum": [
+            "createCheckpoint",
+            "diffCheckpoints",
+            "restoreBetweenCheckpoints",
+            "deleteCheckpoint"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "system"
+        },
+        "method": {
+          "enum": [
+            "info",
+            "listIntegratedTerminalShells"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "terminal"
+        },
+        "method": {
+          "enum": [
+            "create",
+            "write",
+            "resize",
+            "dispose",
+            "list",
+            "attach",
+            "detach"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "setting"
+        },
+        "method": {
+          "enum": [
+            "get",
+            "update"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "zcode-task"
+        },
+        "method": {
+          "enum": [
+            "initialize",
+            "createTask",
+            "sendPrompt",
+            "deliverSessionMessage",
+            "sendSessionMessageDeliveryResult",
+            "enqueueTaskCommand",
+            "promoteTaskCommand",
+            "cancelTaskCommand",
+            "stopGeneration",
+            "compactSession",
+            "goalSession",
+            "respondPermission",
+            "respondElicitation",
+            "closeTask",
+            "resumeTask",
+            "listTasks",
+            "listPinnedTaskIds",
+            "listPinnedTasks",
+            "listDeletedTaskIds",
+            "listTaskList",
+            "createTaskGroup",
+            "renameTaskGroup",
+            "updateTaskGroupColor",
+            "deleteTaskGroup",
+            "listGroupedTaskViewStructure",
+            "applyGroupedTaskViewOrder",
+            "listArchivedTasks",
+            "archiveStaleTasks",
+            "archiveWorkspaceTasks",
+            "getTaskSnapshot",
+            "getTaskSnapshotWithEtag",
+            "getTaskSnapshotBody",
+            "getTaskSnapshotRef",
+            "getTaskSnapshotToolCallsSlice",
+            "getTaskMeta",
+            "getTaskConfigOptions",
+            "getTaskModelSelection",
+            "setAssistantMessageFeedback",
+            "setMode",
+            "setConfigOption",
+            "setModel",
+            "setAutomationSessionConfig",
+            "getModelTrajectory",
+            "getTaskTokenUsage",
+            "deleteTask",
+            "deleteArchivedTask",
+            "deleteArchivedTasks",
+            "renameTask",
+            "setTaskPinned",
+            "setTaskUnread",
+            "archiveTask",
+            "unarchiveTask",
+            "branchTaskFromPrompt"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "window-controller"
+        },
+        "method": {
+          "enum": [
+            "deleteArchivedTask",
+            "deleteArchivedTasks",
+            "listTaskList",
+            "mutateTask",
+            "subscribeControllerV4",
+            "resyncControllerV4",
+            "unsubscribeControllerV4"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "zcode-agent"
+        },
+        "method": {
+          "enum": [
+            "prepareStorage",
+            "getStorageStartupState",
+            "initialize",
+            "getWorkspaceRuntimeIdentity",
+            "createSession",
+            "resumeSession",
+            "listSessions",
+            "listSessionSubagents",
+            "getTaskTokenUsage",
+            "readSession",
+            "readSessionMessages",
+            "readSessionDebug",
+            "readSessionEvents",
+            "readWorkspacePresentation",
+            "grantWorkspaceHookTrust",
+            "listMcpServerStatuses",
+            "listPlugins",
+            "getPluginReferenceCatalog",
+            "getSkillReferenceCatalog",
+            "listSavedWorkflows",
+            "getSavedWorkflow",
+            "updateSavedWorkflowMeta",
+            "deleteSavedWorkflow",
+            "listSavedWorkflowRuns",
+            "moveSavedWorkflow",
+            "resolveSuggestedPluginReference",
+            "getPluginsOverview",
+            "addPluginMarketplace",
+            "removePluginMarketplace",
+            "updatePluginMarketplace",
+            "installPlugin",
+            "cancelPluginOperation",
+            "uninstallPlugin",
+            "updatePlugin",
+            "restoreBuiltinPlugin",
+            "configurePlugin",
+            "resetPluginConfig",
+            "validatePlugin",
+            "describePlugin",
+            "setPluginEnabled",
+            "listAutomations",
+            "createAutomation",
+            "updateAutomation",
+            "deleteAutomation",
+            "setAutomationEnabled",
+            "restartAutomation",
+            "runAutomationNow",
+            "listAutomationRuns",
+            "deleteAutomationRun",
+            "generateWorkspaceText",
+            "testModelConnectivity",
+            "sendPrompt",
+            "compactSession",
+            "reviewProjectMemory",
+            "workspaceMemory",
+            "readProjectMemoryReview",
+            "cancelProjectMemoryReview",
+            "goalSession",
+            "closeSession",
+            "setModel",
+            "setThoughtLevel",
+            "setMode",
+            "respondSessionRuntimePreferences",
+            "helloConversationV4",
+            "initializeConversationV4",
+            "subscribeConversationV4",
+            "resyncConversationV4",
+            "unsubscribeConversationV4",
+            "conversationRowsRangeV4",
+            "conversationPlansV4",
+            "conversationWorkflowRunEventsV4",
+            "conversationWorkflowRunsV4",
+            "conversationWorkflowRunArtifactsV4",
+            "conversationWorkflowRunArtifactDataV4",
+            "conversationWorkflowRunArtifactReadV4",
+            "conversationWorkflowRunWorkspaceV4",
+            "conversationWorkflowRunNodeResultV4",
+            "backgroundBashOutputV4",
+            "conversationFileChangesV4",
+            "conversationFileRewindPreviewV4",
+            "sendConversationCommandV4",
+            "queryConversationCommandsV4",
+            "attachmentBeginV4",
+            "attachmentChunkV4",
+            "attachmentCommitV4",
+            "attachmentAbortV4",
+            "attachmentPreviewSourceV4",
+            "attachmentReadV4",
+            "conversationAttachmentReadV4",
+            "conversationAttachmentStatV4",
+            "subscribeSessionsIndexV4",
+            "resyncSessionsIndexV4",
+            "unsubscribeSessionsIndexV4",
+            "subscribeWorkspaceConfigV4",
+            "resyncWorkspaceConfigV4",
+            "unsubscribeWorkspaceConfigV4"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "zcode-session"
+        },
+        "method": {
+          "enum": [
+            "initializeWorkspace",
+            "getWorkspaceRuntimeIdentity",
+            "readWorkspacePresentation",
+            "createSession",
+            "resumeSession",
+            "listSessions",
+            "readSession",
+            "readSessionMessages",
+            "readSessionEvents",
+            "promoteDeferredDraftSession",
+            "closeSession",
+            "closeDeferredDraftSession",
+            "setModel",
+            "setThoughtLevel",
+            "setMode"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "model-selection"
+        },
+        "method": {
+          "enum": [
+            "getView"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "provider-settings"
+        },
+        "method": {
+          "enum": [
+            "getView",
+            "refresh",
+            "createPersonalProvider",
+            "savePersonalProviderOverlay",
+            "deletePersonalProvider",
+            "reorderPersonalProviders",
+            "reorderPersonalModels",
+            "addPersonalModel",
+            "renamePersonalModel",
+            "deletePersonalModel",
+            "savePersonalModelDraft",
+            "setPersonalModelEnabled",
+            "testModelConnectivity"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "image-generation"
+        },
+        "method": {
+          "enum": [
+            "getSettings",
+            "saveSettings",
+            "listModels",
+            "validate"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "skills"
+        },
+        "method": {
+          "enum": [
+            "list",
+            "setEnabled",
+            "buildPromptContext",
+            "copyToCommon",
+            "removeFromCommon",
+            "deleteSkill"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "plugins"
+        },
+        "method": {
+          "enum": [
+            "getOverview",
+            "addMarketplace",
+            "removeMarketplace",
+            "updateMarketplace",
+            "installPlugin",
+            "uninstallPlugin",
+            "setPluginEnabled"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "plugin-management"
+        },
+        "method": {
+          "enum": [
+            "listPlugins",
+            "getPluginReferenceCatalog",
+            "resolveSuggestedPluginReference",
+            "getPluginsOverview",
+            "addPluginMarketplace",
+            "removePluginMarketplace",
+            "updatePluginMarketplace",
+            "installPlugin",
+            "cancelPluginOperation",
+            "uninstallPlugin",
+            "updatePlugin",
+            "restoreBuiltinPlugin",
+            "configurePlugin",
+            "resetPluginConfig",
+            "validatePlugin",
+            "describePlugin",
+            "setPluginEnabled"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "subagents"
+        },
+        "method": {
+          "enum": [
+            "list",
+            "setEnabled",
+            "setBuiltInModelOverride",
+            "setPluginAgentModelOverride",
+            "createAgent",
+            "updateAgent",
+            "deleteAgent"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "commands"
+        },
+        "method": {
+          "enum": [
+            "list",
+            "writeCommandFile",
+            "updateCommandFile",
+            "deleteCommandFile",
+            "setCommandEnabled"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "hooks"
+        },
+        "method": {
+          "enum": [
+            "loadHooks",
+            "saveHooks",
+            "grantWorkspaceHookTrust"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "memory"
+        },
+        "method": {
+          "enum": [
+            "listProjectMemories",
+            "readProjectMemoryFile"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "usage-stats"
+        },
+        "method": {
+          "enum": [
+            "getAppUsageSnapshot",
+            "getCodingPlanUsageSnapshot",
+            "getCodingPlanResetStatus",
+            "requestCodingPlanResetOpportunity",
+            "useCodingPlanReset",
+            "markCodingPlanResetHistoryRead",
+            "getSnapshot",
+            "getEntitlementSnapshot"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "coding-plan-subscription"
+        },
+        "method": {
+          "enum": [
+            "getDynamicWorkflowClientConfig"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "client-scenes"
+        },
+        "method": {
+          "enum": [
+            "list"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "file-watcher"
+        },
+        "method": {
+          "enum": [
+            "watch",
+            "unwatch"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "media-preview"
+        },
+        "method": {
+          "enum": [
+            "prepare",
+            "refreshPlaybackUrl",
+            "release"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "broadcast"
+        },
+        "method": {
+          "enum": [
+            "send",
+            "sendWithAcknowledgements"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    }
+  ]
+}
