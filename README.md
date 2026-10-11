@@ -4,6 +4,8 @@
 
 [English](README.en.md) · [桌面源码与安装](https://github.com/showjiangnan/zcode-feiyu) · [API 与 SDK](docs/API.md) · [部署运维](docs/DEPLOYMENT.md) · [安全与边界](docs/SECURITY.md)
 
+当前配套版本：**RCS / SDK 1.1.0，Web 3.14.5**。本次同步桌面端的会话与项目导航、模型配置便捷操作，以及工具输出图片的展示协议。会话执行与子代理仍复用已连接桌面的 runtime。
+
 ## 快速开始：本机验证
 
 需要 Python 3.12+ 和 uv。发布目录已包含配套 Web 与 JavaScript SDK，不需要 Node 或 Electron 才能运行服务器。
@@ -55,11 +57,11 @@ docker compose -f deploy/compose.yaml up -d --build
 Python 源码在 `zcode_rcs/`；Web 与 SDK 的权威 TypeScript 源码在桌面主仓库。这里保留可独立部署的 `web/`、`sdk/`、`protocol/`，不维护第二份会话 UI。更新时在桌面主仓库运行：
 
 ```bash
-pnpm --filter @zcode/web build
+ZCODE_ENV=production pnpm --filter @zcode/web build
 node scripts/build-rcs-assets.mjs /path/to/zcode-rcs
 ```
 
-兼容版本为 bridge **1** / RPC codec **1** / Agent wire **3**。入口元数据及 `web/build-info.json` 用于检查配套产物。新增内部服务方法不会自动公开，必须更新允许列表。测试与本地规格不属于公开生产提交范围。
+兼容版本为 bridge **1** / RPC codec **1** / Agent wire **3**。入口元数据及 `web/build-info.json` 用于检查配套产物；后者记录配套版本、源码指纹与产物指纹。导出器拒绝缺失或过期的 Web 构建，先验证暂存产物，再替换三组资源；失败时恢复旧资源。生产升级应停止服务、更新完整发布包后重启，并保留 `data/` 与密钥配置。新增内部服务方法不会自动公开，必须更新允许列表。测试与本地规格不属于公开生产提交范围。
 
 ## 数据与安全
 

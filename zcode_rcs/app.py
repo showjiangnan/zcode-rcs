@@ -5,6 +5,7 @@ from fastapi import FastAPI, Request, Response
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
+from . import __version__
 from .auth import AuthStore
 from .config import Config, from_env
 from .http_api import create_api, PREFIX
@@ -37,7 +38,7 @@ def create_app(config: Config | None = None):
             await task
         await hub.close()
 
-    app = FastAPI(title="ZCode RCS", version="1.0.0", lifespan=lifespan, docs_url=None, redoc_url=None)
+    app = FastAPI(title="ZCode RCS", version=__version__, lifespan=lifespan, docs_url=None, redoc_url=None)
     app.state.auth = auth
     app.state.hub = hub
 

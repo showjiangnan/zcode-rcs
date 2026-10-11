@@ -1,1 +1,0 @@
-import"./chunk-WKBPLHUA-FRezSk4a.js";import{a as e,i as t,n,r,t as i}from"./chunk-XBI2PYTU-BaoOrY6P.js";export{i as createMinimalDocxPackage,n as getPart,r as packageToArrayBuffer,t as parseDocx,e as withPart};

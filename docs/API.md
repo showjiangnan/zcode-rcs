@@ -42,6 +42,20 @@ const result = await rpc.call({ service: 'file', method: 'readdir',
 
 Desktop/model credentials are not returned by configuration read APIs. Empty secret fields in a remote provider save preserve the original desktop value; a replacement is write-only. Clear existing secrets on desktop. The bridge identity grants powerful task and terminal control, so this is not a filesystem sandbox for model-generated shell commands.
 
+### SDK 1.1.0 additions
+
+The paired Web 3.14.5 uses two additional `provider-settings` methods. Both are present in the shipped manifest and SDK declarations, and must also be granted by the attached desktop. An older desktop cannot gain a method merely by updating its browser.
+
+```js
+// IDs refer to a provider/model already configured on the execution computer.
+const discovered = await rpc.call({ service: 'provider-settings',
+  method: 'discoverModels', args: [providerId] }); // { view, addedCount }
+const view = await rpc.call({ service: 'provider-settings',
+  method: 'setPersonalModelFastMode', args: [providerId, modelId, true] });
+```
+
+Discovery and configuration are performed by the existing Host service. Model requests and credentials remain on the execution computer. `protocol/v4.schema.json` also includes `toolResultDisplaySchema` and the `node_repl_images` tool-output display variant, so integrators can preserve images alongside text rather than discarding an unfamiliar display. These additions do not grant native computer-control permissions to a browser client.
+
 ## Conversations, attachments and recovery
 
 1. Call `zcode-agent.helloConversationV4` then `initializeConversationV4` with `{kind:"clientHello",protocolVersion:3,clientId,clientKind:"web",appVersion,capabilities}`. Keep a stable client ID for the logical client. Only negotiate capabilities announced by Hello.

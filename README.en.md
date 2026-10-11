@@ -4,6 +4,8 @@ A user-operated Python bridge with a complete responsive ZCode Web UI. Keep the 
 
 [中文](README.md) · [Desktop source and installation](https://github.com/showjiangnan/zcode-feiyu) · [API and SDK](docs/API.md) · [Deployment](docs/DEPLOYMENT.md) · [Security](docs/SECURITY.md)
 
+Current bundle: **RCS / SDK 1.1.0, Web 3.14.5**. This update includes current conversation/project navigation, convenient model configuration, and image displays in tool outputs. Conversation execution and subagents continue to use the connected desktop runtime.
+
 ## Local setup
 
 Python 3.12+ and uv are required. Compatible Web and SDK assets are included; the server does not require Node or Electron.
@@ -55,11 +57,11 @@ This is a bridge to your local ZCode. Native OS dialogs and permissions remain d
 Python source is in `zcode_rcs/`. The authoritative TypeScript UI/SDK source is in the desktop repository. This repository ships standalone deployable `web/`, `sdk/`, and `protocol/` assets without maintaining another conversation UI:
 
 ```bash
-pnpm --filter @zcode/web build
+ZCODE_ENV=production pnpm --filter @zcode/web build
 node scripts/build-rcs-assets.mjs /path/to/zcode-rcs
 ```
 
-Compatibility: bridge **1**, RPC codec **1**, Agent wire **3**. Check `/api/rcs/v1/meta` and `web/build-info.json`. Internal methods are not automatically exposed. Local specifications and test records are excluded from production publication.
+Compatibility: bridge **1**, RPC codec **1**, Agent wire **3**. Check `/api/rcs/v1/meta` and `web/build-info.json`; the latter records paired versions, source fingerprint and artifact fingerprint. The exporter rejects missing or stale Web builds, validates staged assets, and restores the previous asset set if replacement fails. Stop the service before installing a complete release, retain `data/` and key configuration, then restart. Internal methods are not automatically exposed. Local specifications and test records are excluded from production publication.
 
 ## Data and trust
 

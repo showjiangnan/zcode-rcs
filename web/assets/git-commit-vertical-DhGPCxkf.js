@@ -1,0 +1,1 @@
+import{n as e,t}from"./git-commit-vertical-C1Ki-mVz.js";export{e as __iconNode,t as default};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./square-mouse-pointer-CyU2EXjD.js";export{e as __iconNode,t as default};

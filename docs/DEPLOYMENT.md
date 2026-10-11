@@ -27,6 +27,12 @@ Liveness: `GET /api/rcs/v1/health`. Compatibility: `GET /api/rcs/v1/meta`. A hea
 
 ## Updates, backups and rotation
 
+Release 1.1.0 ships SDK 1.1.0 and Web 3.14.5; wire versions remain 1 / 1 / 3. Update all of `zcode_rcs/`, Python package/lock files, `web/`, `sdk/`, and `protocol/` together. Stop the old process first and retain its authentication database and key files. The exporter uses staging, an exclusive lease and rollback; the three directory replacements are not an online filesystem transaction. Do not export into a directory while it is serving requests.
+
+Build from current desktop source with `ZCODE_ENV=production pnpm --filter @zcode/web build`, then run `node scripts/build-rcs-assets.mjs /path/to/zcode-rcs`. `web/rcs-source.json` identifies build inputs; `web/build-info.json` records `rcsVersion`, `sdkVersion`, `sourceFingerprint` and `artifactFingerprint`. The artifact digest is SHA-256 of JSON-encoded sorted `[relativePath, sha256(fileBytes)]` pairs across `sdk/`, `protocol/` and `web/`, excluding `web/build-info.json` itself. Paths use `/` separators.
+
+An interrupted export may leave `.rcs-assets-export.lock` or `.rcs-assets-stage-*`. Confirm that its exporter has exited before removing a stale lease. A rollback failure retains `previous/` under the staging directory for recovery; restore the complete old set before restarting. Do not delete authentication storage during recovery.
+
 Back up the SQLite auth database and keys configuration using a consistent SQLite backup or stop the server briefly. There is no server conversation/PTY/file backup because those facts belong to the execution computer. Restarting the server drops live attachments; clients rediscover and restore from desktop runtime facts. Retaining auth storage preserves existing session identity and revocations.
 
 Update the complete server/Web/SDK/protocol set, keep data volume, then restart one instance. Compatibility mismatch fails explicitly. To rotate, atomically replace the digest configuration, increment the identity version and update desktop/browser keys. The 10-second sweep revokes old sessions and closes their sockets; removal of an identity revokes it. Do not mutate a file partially while the server reads it. Invalid key configuration does not replace the last validated configuration; fix it and observe successful authentication before declaring rotation finished.

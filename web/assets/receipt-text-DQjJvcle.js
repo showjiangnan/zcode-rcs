@@ -1,0 +1,1 @@
+import{n as e,t}from"./receipt-text-Bd3uRGRg.js";export{e as __iconNode,t as default};

@@ -12,3 +12,5 @@ spec/
 
 tests/
 *.egg-info/
+.rcs-assets-stage-*/
+.rcs-assets-export.lock

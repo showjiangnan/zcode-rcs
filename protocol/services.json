@@ -315,6 +315,8 @@
         "deletePersonalModel",
         "savePersonalModelDraft",
         "setPersonalModelEnabled",
+        "discoverModels",
+        "setPersonalModelFastMode",
         "testModelConnectivity"
       ],
       "events": [

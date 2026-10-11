@@ -1,1 +1,0 @@
-import{n as e,t}from"./pencil-D27hLT8i.js";export{e as __iconNode,t as default};

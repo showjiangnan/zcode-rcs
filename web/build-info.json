@@ -1,8 +1,12 @@
 {
-  "version": "3.14.4",
+  "version": "3.14.5",
+  "rcsVersion": "1.1.0",
+  "sdkVersion": "1.1.0",
+  "sourceFingerprint": "45108304558fe0dc6bea781779ee1883eb5d340786eefb80469148a063ea2370",
   "source": "https://github.com/showjiangnan/zcode-feiyu",
   "entry": "packages/web/src/rcs/RcsApp.tsx",
   "bridgeVersion": 1,
   "rpcCodec": 1,
-  "agentWire": 3
+  "agentWire": 3,
+  "artifactFingerprint": "9933954ffdc5b83ed4d12c1d912052deb6f1fe8ec83cb13d9b505f5fe2e7ed75"
 }

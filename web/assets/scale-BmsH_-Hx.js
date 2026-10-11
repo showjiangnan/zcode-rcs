@@ -1,1 +1,0 @@
-import{n as e,t}from"./scale-B1lrRG9y.js";export{e as __iconNode,t as default};

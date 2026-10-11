@@ -1,1 +1,0 @@
-import{n as e,t}from"./palette-BP-s9GPS.js";export{e as __iconNode,t as default};

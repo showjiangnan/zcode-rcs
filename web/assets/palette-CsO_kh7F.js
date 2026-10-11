@@ -1,0 +1,1 @@
+import{n as e,t}from"./palette-CdP0mayl.js";export{e as __iconNode,t as default};

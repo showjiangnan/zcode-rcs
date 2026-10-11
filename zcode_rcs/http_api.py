@@ -4,6 +4,7 @@ from urllib.parse import quote
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import StreamingResponse
 
+from . import __version__
 from .schemas import Attach, BRIDGE_VERSION, RPC_CODEC_VERSION, AGENT_WIRE_VERSION
 
 PREFIX = "/api/rcs/v1"
@@ -33,7 +34,7 @@ def create_api(auth, hub, config):
     @router.get("/meta")
     async def meta():
         return {"serverInstanceId": auth.instance_id, "bridgeVersion": BRIDGE_VERSION,
-                "rpcCodec": RPC_CODEC_VERSION, "agentWire": AGENT_WIRE_VERSION, "version": "1.0.0"}
+                "rpcCodec": RPC_CODEC_VERSION, "agentWire": AGENT_WIRE_VERSION, "version": __version__}
 
     @router.get("/auth/session")
     async def me(request: Request):
