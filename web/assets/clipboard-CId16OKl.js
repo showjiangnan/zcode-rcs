@@ -1,0 +1,1 @@
+import{n as e,t}from"./clipboard-D88N6pul.js";export{e as __iconNode,t as default};

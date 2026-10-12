@@ -1,0 +1,1 @@
+import{n as e,t}from"./minimize-2-CK_01zzl.js";export{e as __iconNode,t as default};

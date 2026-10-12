@@ -301,8 +301,11 @@
             "listPlugins",
             "getPluginReferenceCatalog",
             "getSkillReferenceCatalog",
+            "syncDynamicWorkflowUserMode",
             "listSavedWorkflows",
             "getSavedWorkflow",
+            "findSavedWorkflowForRun",
+            "saveSavedWorkflowFromRun",
             "updateSavedWorkflowMeta",
             "deleteSavedWorkflow",
             "listSavedWorkflowRuns",
@@ -795,6 +798,27 @@
             "prepare",
             "refreshPlaybackUrl",
             "release"
+          ]
+        },
+        "args": {
+          "type": "array"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service",
+        "method"
+      ],
+      "properties": {
+        "service": {
+          "const": "chatgpt-subscription"
+        },
+        "method": {
+          "enum": [
+            "execute"
           ]
         },
         "args": {

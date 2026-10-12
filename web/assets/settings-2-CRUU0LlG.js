@@ -1,1 +1,0 @@
-import{n as e,t}from"./settings-2-C8Srsn-P.js";export{e as __iconNode,t as default};

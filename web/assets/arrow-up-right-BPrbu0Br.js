@@ -1,0 +1,1 @@
+import{n as e,t}from"./arrow-up-right-BPx4BOoF.js";export{e as __iconNode,t as default};

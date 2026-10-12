@@ -1,0 +1,1 @@
+import{n as e,t}from"./paperclip-BAz9J3E7.js";export{e as __iconNode,t as default};

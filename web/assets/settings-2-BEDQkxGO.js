@@ -1,0 +1,1 @@
+import{n as e,t}from"./settings-2-dZw-zjS7.js";export{e as __iconNode,t as default};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./square-kanban-By5V1YwQ.js";export{e as __iconNode,t as default};

@@ -1,0 +1,1 @@
+import{n as e,t}from"./notepad-text-BMLmIWgs.js";export{e as __iconNode,t as default};

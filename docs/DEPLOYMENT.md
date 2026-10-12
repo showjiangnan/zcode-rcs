@@ -27,7 +27,7 @@ Liveness: `GET /api/rcs/v1/health`. Compatibility: `GET /api/rcs/v1/meta`. A hea
 
 ## Updates, backups and rotation
 
-Release 1.1.0 ships SDK 1.1.0 and Web 3.14.5; wire versions remain 1 / 1 / 3. Update all of `zcode_rcs/`, Python package/lock files, `web/`, `sdk/`, and `protocol/` together. Stop the old process first and retain its authentication database and key files. The exporter uses staging, an exclusive lease and rollback; the three directory replacements are not an online filesystem transaction. Do not export into a directory while it is serving requests.
+Release 1.1.1 ships SDK 1.1.1 and Web 3.14.6; wire versions remain 1 / 1 / 3. Update all of `zcode_rcs/`, Python package/lock files, `web/`, `sdk/`, and `protocol/` together. Stop the old process first and retain its authentication database and key files. The exporter uses staging, an exclusive lease and rollback; the three directory replacements are not an online filesystem transaction. Do not export into a directory while it is serving requests.
 
 Build from current desktop source with `ZCODE_ENV=production pnpm --filter @zcode/web build`, then run `node scripts/build-rcs-assets.mjs /path/to/zcode-rcs`. `web/rcs-source.json` identifies build inputs; `web/build-info.json` records `rcsVersion`, `sdkVersion`, `sourceFingerprint` and `artifactFingerprint`. The artifact digest is SHA-256 of JSON-encoded sorted `[relativePath, sha256(fileBytes)]` pairs across `sdk/`, `protocol/` and `web/`, excluding `web/build-info.json` itself. Paths use `/` separators.
 

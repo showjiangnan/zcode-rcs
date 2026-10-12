@@ -184,8 +184,11 @@
         "listPlugins",
         "getPluginReferenceCatalog",
         "getSkillReferenceCatalog",
+        "syncDynamicWorkflowUserMode",
         "listSavedWorkflows",
         "getSavedWorkflow",
+        "findSavedWorkflowForRun",
+        "saveSavedWorkflowFromRun",
         "updateSavedWorkflowMeta",
         "deleteSavedWorkflow",
         "listSavedWorkflowRuns",
@@ -460,6 +463,12 @@
     },
     "credential": {
       "methods": [],
+      "events": []
+    },
+    "chatgpt-subscription": {
+      "methods": [
+        "execute"
+      ],
       "events": []
     },
     "broadcast": {

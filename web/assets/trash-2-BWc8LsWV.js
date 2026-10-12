@@ -1,0 +1,1 @@
+import{n as e,t}from"./trash-2-NS-LfNEc.js";export{e as __iconNode,t as default};

@@ -42,9 +42,9 @@ const result = await rpc.call({ service: 'file', method: 'readdir',
 
 Desktop/model credentials are not returned by configuration read APIs. Empty secret fields in a remote provider save preserve the original desktop value; a replacement is write-only. Clear existing secrets on desktop. The bridge identity grants powerful task and terminal control, so this is not a filesystem sandbox for model-generated shell commands.
 
-### SDK 1.1.0 additions
+### Model configuration APIs (introduced in SDK 1.1.0)
 
-The paired Web 3.14.5 uses two additional `provider-settings` methods. Both are present in the shipped manifest and SDK declarations, and must also be granted by the attached desktop. An older desktop cannot gain a method merely by updating its browser.
+The paired Web 3.14.6 uses two additional `provider-settings` methods. Both are present in the shipped manifest and SDK declarations, and must also be granted by the attached desktop. An older desktop cannot gain a method merely by updating its browser.
 
 ```js
 // IDs refer to a provider/model already configured on the execution computer.
@@ -87,3 +87,18 @@ Terminal `list` discovers only allowed workspace PTYs; call it before `attach` o
 - `FLOW_SATURATED`, socket 1013: reconnect and resync from runtime facts.
 - `RESOURCE_CHANGED`: source file was edited during reading; begin a fresh request.
 - V4 rejected/stale/unknown ACKs retain their original runtime semantics.
+
+## Workflow companion methods
+
+The public `zcode-agent` service adds `syncDynamicWorkflowUserMode`, `findSavedWorkflowForRun`, and `saveSavedWorkflowFromRun`. They use the existing Host, persisted settings and workspace checks. Native sandbox registration, MCP page sampling and page-tool registration remain absent from the public manifest.
+# ChatGPT 订阅连接
+
+`chatgpt-subscription.execute` 在已配对 Desktop Host 上支持只读状态和目录刷新：
+
+```json
+{"service":"chatgpt-subscription","method":"execute","args":[{"type":"read"}]}
+```
+
+刷新使用同一请求结构，命令为 `{"type":"refresh-models"}`。结果包含可用性、当前连接标签、授权状态和模型目录，不含原始令牌或本机推理 capability。
+
+登录、切换、重新授权、订阅用量确认、退出和移除连接必须在本机 Desktop 设置页进行；远程发起这些命令会被拒绝。Web 选择已经连接的订阅模型，仍由原 Desktop runtime 执行，不向桥接服务器发送 OAuth 凭据。独立 SSH/Docker 的未装配执行端不自动复制桌面授权，也不会转到另一个收费模型。

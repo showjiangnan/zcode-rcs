@@ -1,0 +1,1 @@
+import{n as e,t}from"./palette-DR4CQQDt.js";export{e as __iconNode,t as default};

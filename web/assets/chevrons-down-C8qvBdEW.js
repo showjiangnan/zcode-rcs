@@ -1,0 +1,1 @@
+import{t as e}from"./createLucideIcon-mvdyiw6Q.js";var t=[[`path`,{d:`m7 6 5 5 5-5`,key:`1lc07p`}],[`path`,{d:`m7 13 5 5 5-5`,key:`1d48rs`}]],n=e(`chevrons-down`,t);export{t as n,n as t};

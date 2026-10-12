@@ -1,1 +1,0 @@
-import{n as e,t}from"./mouse-pointer-click-BUZovlEG.js";export{e as __iconNode,t as default};

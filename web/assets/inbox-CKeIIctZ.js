@@ -1,0 +1,1 @@
+import{n as e,t}from"./inbox-C7ykC8DU.js";export{e as __iconNode,t as default};

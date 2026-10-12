@@ -4,7 +4,9 @@ A user-operated Python bridge with a complete responsive ZCode Web UI. Keep the 
 
 [中文](README.md) · [Desktop source and installation](https://github.com/showjiangnan/zcode-feiyu) · [API and SDK](docs/API.md) · [Deployment](docs/DEPLOYMENT.md) · [Security](docs/SECURITY.md)
 
-Current bundle: **RCS / SDK 1.1.0, Web 3.14.5**. This update includes current conversation/project navigation, convenient model configuration, and image displays in tool outputs. Conversation execution and subagents continue to use the connected desktop runtime.
+Current bundle: **RCS / SDK 1.1.1, Web 3.14.6**. This update adds workflow run settings, progress, logs and save operations with the paired shared Web protocol. Conversation/project navigation, model configuration, orchestration, memory and image displays remain available. Native MCP Apps/Gen UI page sandboxes remain local desktop capabilities with accurate Web fallbacks. Conversation execution and subagents continue to use the connected desktop runtime.
+
+The shared composer follows the desktop UI: the model button shows the model name and selected reasoning level, a reasoning slider lives inside the model menu, and the maximum level has a purple animation. The proactive work control is hidden when proactive work is disabled. ChatGPT subscription models use an existing desktop connection; remote clients can view its safe status and refresh models, while sign-in and account management remain on the desktop.
 
 ## Local setup
 
@@ -40,15 +42,15 @@ The container exposes port 8030 on loopback only. Include [the Nginx example](de
 
 ## Capabilities
 
-| Capability | Implementation |
-| --- | --- |
-| Responsive conversations | Shared desktop React Root and components, mobile/desktop layouts, independent bridge authentication |
-| Sessions and orchestration | Same desktop runtime and command admission, standard/coordinator/swarm, history, permissions, stop and recovery |
-| Memory, workflows and images | Existing Host services and settings; image/model providers remain configured on the execution computer |
-| Files and artifacts | Host path validation, existing transactional attachment uploads, bounded media ranges, content-hash guarded text editing API |
-| Terminal recovery | Host-owned PTYs, reconnect to the same ID, bounded sequence replay and deduplication; disconnect does not kill the shell |
-| Public integrations | REST control plane, explicit RPC allowlist and schemas, standalone SDK with injectable fetch/WebSocket transport |
-| Access control | OS-protected desktop secret, server key digests, expiring/revocable sessions, workspace grants, Origin checks and bounded flow control |
+| Capability                   | Implementation                                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Responsive conversations     | Shared desktop React Root and components, mobile/desktop layouts, independent bridge authentication                                    |
+| Sessions and orchestration   | Same desktop runtime and command admission, standard/coordinator/swarm, history, permissions, stop and recovery                        |
+| Memory, workflows and images | Existing Host services and settings; image/model providers remain configured on the execution computer                                 |
+| Files and artifacts          | Host path validation, existing transactional attachment uploads, bounded media ranges, content-hash guarded text editing API           |
+| Terminal recovery            | Host-owned PTYs, reconnect to the same ID, bounded sequence replay and deduplication; disconnect does not kill the shell               |
+| Public integrations          | REST control plane, explicit RPC allowlist and schemas, standalone SDK with injectable fetch/WebSocket transport                       |
+| Access control               | OS-protected desktop secret, server key digests, expiring/revocable sessions, workspace grants, Origin checks and bounded flow control |
 
 This is a bridge to your local ZCode. Native OS dialogs and permissions remain desktop capabilities. SSH and existing mobile chat bots are managed through desktop settings. A finished mini-program or mobile app is not included; the same public API is available for custom clients.
 
@@ -68,3 +70,5 @@ Compatibility: bridge **1**, RPC codec **1**, Agent wire **3**. Check `/api/rcs/
 The bridge stores authentication/revocation metadata in SQLite and keeps bounded routing buffers in memory. It does not persist conversations, prompts, repository files, memories or terminal output. Requested content passes through your server. TLS terminates there; the server operator is trusted and this version does not promise end-to-end encryption. Anyone holding your valid shared key can control its identity group.
 
 Apache-2.0. Preserve [LICENSE](LICENSE) and [third-party notices](web/THIRD-PARTY-NOTICES.md).
+
+The current companion build adds reviewed workflow synchronization and save-from-run APIs. Native MCP Apps/Gen UI page sandboxes remain local desktop capabilities; the responsive Web UI uses platform fallbacks. The bridge still forwards to the existing desktop Host.

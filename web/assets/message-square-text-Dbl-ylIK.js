@@ -1,1 +1,0 @@
-import{n as e,t}from"./message-square-text-D-sufC5U.js";export{e as __iconNode,t as default};
