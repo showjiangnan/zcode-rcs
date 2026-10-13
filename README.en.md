@@ -4,9 +4,13 @@ A user-operated Python bridge with a complete responsive ZCode Web UI. Keep the 
 
 [中文](README.md) · [Desktop source and installation](https://github.com/showjiangnan/zcode-feiyu) · [API and SDK](docs/API.md) · [Deployment](docs/DEPLOYMENT.md) · [Security](docs/SECURITY.md)
 
-Current bundle: **RCS / SDK 1.1.1, Web 3.14.6**. This update adds workflow run settings, progress, logs and save operations with the paired shared Web protocol. Conversation/project navigation, model configuration, orchestration, memory and image displays remain available. Native MCP Apps/Gen UI page sandboxes remain local desktop capabilities with accurate Web fallbacks. Conversation execution and subagents continue to use the connected desktop runtime.
+Current bundle: **RCS / SDK 1.1.2, Web 3.14.7**. This update adds workflow run settings, progress, logs and save operations with the paired shared Web protocol. Conversation/project navigation, model configuration, orchestration, memory and image displays remain available. Native MCP Apps/Gen UI page sandboxes remain local desktop capabilities with accurate Web fallbacks. Conversation execution and subagents continue to use the connected desktop runtime.
 
 The shared composer follows the desktop UI: the model button shows the model name and selected reasoning level, a reasoning slider lives inside the model menu, and the maximum level has a purple animation. The proactive work control is hidden when proactive work is disabled. ChatGPT subscription models use an existing desktop connection; remote clients can view its safe status and refresh models, while sign-in and account management remain on the desktop.
+
+## Validation and platform scope
+
+This update synchronizes production shared Web, SDK and protocol assets and verifies local Python-bridge sign-in, restore and sign-out interactions. CUA preview stacking and closure handling remain local desktop capabilities; remote browsers receive no native preview-frame, OS-permission or private-credential interface. Mac results do not validate the current Windows native build or real devices. The paired desktop release provides macOS arm64 only, with no Windows installer. Public-cloud TLS, physical-phone keyboards and all third-party services still require environment-specific validation.
 
 ## Local setup
 

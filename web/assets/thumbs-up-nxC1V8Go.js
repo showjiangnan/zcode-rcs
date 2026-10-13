@@ -1,1 +1,0 @@
-import{n as e,t}from"./thumbs-up-BL4MaMyA.js";export{e as __iconNode,t as default};

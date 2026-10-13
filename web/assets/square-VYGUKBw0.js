@@ -1,0 +1,1 @@
+import{n as e,t}from"./square-C97HM2q1.js";export{e as __iconNode,t as default};

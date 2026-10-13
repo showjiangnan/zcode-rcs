@@ -44,7 +44,7 @@ Desktop/model credentials are not returned by configuration read APIs. Empty sec
 
 ### Model configuration APIs (introduced in SDK 1.1.0)
 
-The paired Web 3.14.6 uses two additional `provider-settings` methods. Both are present in the shipped manifest and SDK declarations, and must also be granted by the attached desktop. An older desktop cannot gain a method merely by updating its browser.
+The paired Web 3.14.7 uses two additional `provider-settings` methods. Both are present in the shipped manifest and SDK declarations, and must also be granted by the attached desktop. An older desktop cannot gain a method merely by updating its browser.
 
 ```js
 // IDs refer to a provider/model already configured on the execution computer.

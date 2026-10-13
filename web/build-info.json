@@ -1,12 +1,12 @@
 {
-  "version": "3.14.6",
-  "rcsVersion": "1.1.1",
-  "sdkVersion": "1.1.1",
-  "sourceFingerprint": "41277b38ffa78c233cc973d498922604b0f48a488c9324a6fd22c35262c055c3",
+  "version": "3.14.7",
+  "rcsVersion": "1.1.2",
+  "sdkVersion": "1.1.2",
+  "sourceFingerprint": "656a6f38f4aa9f7191a26925eaa0f172fa6c7d047f94de0b620b11bfdcd35d40",
   "source": "https://github.com/showjiangnan/zcode-feiyu",
   "entry": "packages/web/src/rcs/RcsApp.tsx",
   "bridgeVersion": 1,
   "rpcCodec": 1,
   "agentWire": 3,
-  "artifactFingerprint": "0e0a32080b682ba2fcc33f517cc7739482b0516e8a69c609cdd89bacfaf5a5f8"
+  "artifactFingerprint": "8a75067bc9b59c4fa82bbc7b63a878a378f7acb5b6027d6084d5694e9f79bc8c"
 }

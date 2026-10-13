@@ -1,0 +1,1 @@
+import{n as e,t}from"./trending-up-down-BLr6UDPR.js";export{e as __iconNode,t as default};
