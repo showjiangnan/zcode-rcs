@@ -6,7 +6,9 @@ A user-operated Python bridge with a complete responsive ZCode Web UI. Keep the 
 
 Current bundle: **RCS / SDK 1.1.2, Web 3.14.7**. This update adds workflow run settings, progress, logs and save operations with the paired shared Web protocol. Conversation/project navigation, model configuration, orchestration, memory and image displays remain available. Native MCP Apps/Gen UI page sandboxes remain local desktop capabilities with accurate Web fallbacks. Conversation execution and subagents continue to use the connected desktop runtime.
 
-The shared composer follows the desktop UI: the model button shows the model name and selected reasoning level, a reasoning slider lives inside the model menu, and the maximum level has a purple animation. The proactive work control is hidden when proactive work is disabled. ChatGPT subscription models use an existing desktop connection; remote clients can view its safe status and refresh models, while sign-in and account management remain on the desktop.
+The shared model menu includes reasoning and speed sliders, defaulting to Standard speed. ChatGPT subscriptions offer catalog-available tiers; Teamorouter Responses uses each model's Fast / Ultrafast settings. Single/double lightning icons show the selection, while the actual tier from successful responses is displayed separately. Selecting Fast does not prove acceleration. Other providers retain their existing paths. Teamorouter settings show the balance, currency and recommended top-up link; the recommendation does not imply a partnership. Proactive controls remain hidden when disabled.
+
+ChatGPT subscription models use an existing desktop connection. Remote clients can read safe status and public model capabilities and refresh the catalog; sign-in and account management stay on Desktop. Shared errors retain bounded incomplete reasons without raw responses or credentials. External imports are performed on Desktop; remote clients may read and continue imported sessions within the original granted workspace. The 2026-10-15 update synchronizes source and paired assets without publishing a new Release.
 
 ## Validation and platform scope
 

@@ -320,6 +320,8 @@
         "setPersonalModelEnabled",
         "discoverModels",
         "setPersonalModelFastMode",
+        "setPersonalModelSpeedCapability",
+        "getTeamorouterBalance",
         "testModelConnectivity"
       ],
       "events": [

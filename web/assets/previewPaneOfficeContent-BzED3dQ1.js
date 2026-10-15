@@ -1,0 +1,1 @@
+import{t as e}from"./previewPaneOfficeContent-DkqwGffP.js";export{e as PreviewPaneOfficeContent};

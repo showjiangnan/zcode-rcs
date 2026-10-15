@@ -920,6 +920,426 @@
       ],
       "additionalProperties": false
     },
+    "chatGPTSubscriptionViewSchema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "unavailableReason": {
+          "type": "string"
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "profileId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "connected",
+                    "identity-only",
+                    "signed-out",
+                    "reauthorization-required",
+                    "verification-pending"
+                  ]
+                },
+                "generation": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "scopes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "catalogRevision": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "models": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "slug": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256
+                      },
+                      "inputModalities": {
+                        "maxItems": 128,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 256
+                        }
+                      },
+                      "contextWindow": {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "contextWindowSource": {
+                        "type": "string",
+                        "enum": [
+                          "official-model-reference",
+                          "local-planning-fallback",
+                          "subscription-catalog"
+                        ]
+                      },
+                      "reasoningLevels": {
+                        "maxItems": 128,
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 256
+                        }
+                      },
+                      "capabilities": {
+                        "type": "object",
+                        "properties": {
+                          "serviceTiers": {
+                            "maxItems": 32,
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "maxLength": 4096
+                                }
+                              },
+                              "required": [
+                                "id"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "additionalSpeedTiers": {
+                            "maxItems": 128,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 256
+                            }
+                          },
+                          "defaultReasoningLevel": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "supportedReasoningLevels": {
+                            "maxItems": 32,
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "effort": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 256
+                                },
+                                "description": {
+                                  "type": "string",
+                                  "maxLength": 4096
+                                }
+                              },
+                              "required": [
+                                "effort"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "defaultReasoningSummary": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "contextWindow": {
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 100000000
+                          },
+                          "maxContextWindow": {
+                            "type": "integer",
+                            "exclusiveMinimum": 0,
+                            "maximum": 100000000
+                          },
+                          "effectiveContextWindowPercent": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 100
+                          },
+                          "inputModalities": {
+                            "maxItems": 128,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 256
+                            }
+                          },
+                          "supportsImageDetailOriginal": {
+                            "type": "boolean"
+                          },
+                          "supportsSearchTool": {
+                            "type": "boolean"
+                          },
+                          "webSearchToolType": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "applyPatchToolType": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "experimentalSupportedTools": {
+                            "maxItems": 128,
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 256
+                            }
+                          },
+                          "shellType": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "toolMode": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "useResponsesLite": {
+                            "type": "boolean"
+                          },
+                          "nodeReplDisabled": {
+                            "type": "boolean"
+                          },
+                          "nodeReplAutoReviewRequired": {
+                            "type": "boolean"
+                          },
+                          "multiAgentVersion": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "multiAgentReasoningEffort": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "supportVerbosity": {
+                            "type": "boolean"
+                          },
+                          "defaultVerbosity": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                          },
+                          "supportsReasoningEffortUpdates": {
+                            "type": "boolean"
+                          },
+                          "supportsExperimentalContext": {
+                            "type": "boolean"
+                          },
+                          "supportedInApi": {
+                            "type": "boolean"
+                          },
+                          "availableAccessPrograms": {
+                            "type": "object",
+                            "propertyNames": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 256
+                            },
+                            "additionalProperties": {}
+                          },
+                          "truncationPolicy": {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 256
+                              },
+                              "limit": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 9007199254740991
+                              }
+                            },
+                            "required": [
+                              "mode",
+                              "limit"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "description": {
+                            "type": "string",
+                            "maxLength": 4096
+                          },
+                          "priority": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "availabilityNux": {},
+                          "upgrade": {}
+                        },
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "slug",
+                      "displayName"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "catalogState": {
+                  "type": "string",
+                  "enum": [
+                    "empty",
+                    "fresh",
+                    "cached",
+                    "failed"
+                  ]
+                },
+                "catalogError": {
+                  "type": "string"
+                },
+                "remoteRevocation": {
+                  "type": "string",
+                  "enum": [
+                    "confirmed",
+                    "unconfirmed"
+                  ]
+                },
+                "usageAcknowledged": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "profileId",
+                "label",
+                "status",
+                "generation",
+                "scopes",
+                "catalogRevision",
+                "models",
+                "catalogState",
+                "usageAcknowledged"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pending": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "attemptId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "sign-in",
+                    "switch",
+                    "reauthorize"
+                  ]
+                }
+              },
+              "required": [
+                "attemptId",
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "status": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "code"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "revision",
+        "available",
+        "connection",
+        "pending"
+      ],
+      "additionalProperties": false
+    },
     "clientHelloSchema": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
@@ -18342,6 +18762,12 @@
                                   "minLength": 1,
                                   "maxLength": 160
                                 },
+                                "providerIncompleteReason": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 64,
+                                  "pattern": "^[a-z][a-z0-9_]*$"
+                                },
                                 "retryable": {
                                   "type": "boolean"
                                 }
@@ -18786,6 +19212,14 @@
                             "reasoningLevel": {
                               "type": "string",
                               "minLength": 1
+                            },
+                            "speed": {
+                              "type": "string",
+                              "enum": [
+                                "standard",
+                                "fast",
+                                "ultrafast"
+                              ]
                             }
                           },
                           "additionalProperties": false
@@ -19040,6 +19474,36 @@
                 "usage": {
                   "type": "object",
                   "properties": {
+                    "modelSpeed": {
+                      "type": "object",
+                      "properties": {
+                        "requestedServiceTier": {
+                          "type": "string",
+                          "enum": [
+                            "default",
+                            "fast",
+                            "priority",
+                            "ultrafast"
+                          ]
+                        },
+                        "actualServiceTier": {
+                          "type": "string",
+                          "enum": [
+                            "default",
+                            "fast",
+                            "priority",
+                            "ultrafast"
+                          ]
+                        },
+                        "downgraded": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "requestedServiceTier"
+                      ],
+                      "additionalProperties": false
+                    },
                     "contextWindow": {
                       "anyOf": [
                         {
@@ -19810,6 +20274,14 @@
                                   "reasoningLevel": {
                                     "type": "string",
                                     "minLength": 1
+                                  },
+                                  "speed": {
+                                    "type": "string",
+                                    "enum": [
+                                      "standard",
+                                      "fast",
+                                      "ultrafast"
+                                    ]
                                   }
                                 },
                                 "additionalProperties": false
@@ -25260,6 +25732,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -33194,6 +33674,12 @@
                           "minLength": 1,
                           "maxLength": 160
                         },
+                        "providerIncompleteReason": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 64,
+                          "pattern": "^[a-z][a-z0-9_]*$"
+                        },
                         "retryable": {
                           "type": "boolean"
                         }
@@ -33642,6 +34128,14 @@
                     "reasoningLevel": {
                       "type": "string",
                       "minLength": 1
+                    },
+                    "speed": {
+                      "type": "string",
+                      "enum": [
+                        "standard",
+                        "fast",
+                        "ultrafast"
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -33897,6 +34391,36 @@
         "usage": {
           "type": "object",
           "properties": {
+            "modelSpeed": {
+              "type": "object",
+              "properties": {
+                "requestedServiceTier": {
+                  "type": "string",
+                  "enum": [
+                    "default",
+                    "fast",
+                    "priority",
+                    "ultrafast"
+                  ]
+                },
+                "actualServiceTier": {
+                  "type": "string",
+                  "enum": [
+                    "default",
+                    "fast",
+                    "priority",
+                    "ultrafast"
+                  ]
+                },
+                "downgraded": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "requestedServiceTier"
+              ],
+              "additionalProperties": false
+            },
             "contextWindow": {
               "anyOf": [
                 {
@@ -34667,6 +35191,14 @@
                           "reasoningLevel": {
                             "type": "string",
                             "minLength": 1
+                          },
+                          "speed": {
+                            "type": "string",
+                            "enum": [
+                              "standard",
+                              "fast",
+                              "ultrafast"
+                            ]
                           }
                         },
                         "additionalProperties": false
@@ -47019,6 +47551,12 @@
                                       "minLength": 1,
                                       "maxLength": 160
                                     },
+                                    "providerIncompleteReason": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 64,
+                                      "pattern": "^[a-z][a-z0-9_]*$"
+                                    },
                                     "retryable": {
                                       "type": "boolean"
                                     }
@@ -47467,6 +48005,14 @@
                                 "reasoningLevel": {
                                   "type": "string",
                                   "minLength": 1
+                                },
+                                "speed": {
+                                  "type": "string",
+                                  "enum": [
+                                    "standard",
+                                    "fast",
+                                    "ultrafast"
+                                  ]
                                 }
                               },
                               "additionalProperties": false
@@ -47722,6 +48268,36 @@
                     "usage": {
                       "type": "object",
                       "properties": {
+                        "modelSpeed": {
+                          "type": "object",
+                          "properties": {
+                            "requestedServiceTier": {
+                              "type": "string",
+                              "enum": [
+                                "default",
+                                "fast",
+                                "priority",
+                                "ultrafast"
+                              ]
+                            },
+                            "actualServiceTier": {
+                              "type": "string",
+                              "enum": [
+                                "default",
+                                "fast",
+                                "priority",
+                                "ultrafast"
+                              ]
+                            },
+                            "downgraded": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "requestedServiceTier"
+                          ],
+                          "additionalProperties": false
+                        },
                         "contextWindow": {
                           "anyOf": [
                             {
@@ -48492,6 +49068,14 @@
                                       "reasoningLevel": {
                                         "type": "string",
                                         "minLength": 1
+                                      },
+                                      "speed": {
+                                        "type": "string",
+                                        "enum": [
+                                          "standard",
+                                          "fast",
+                                          "ultrafast"
+                                        ]
                                       }
                                     },
                                     "additionalProperties": false
@@ -74108,6 +74692,12 @@
                                                 "minLength": 1,
                                                 "maxLength": 160
                                               },
+                                              "providerIncompleteReason": {
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 64,
+                                                "pattern": "^[a-z][a-z0-9_]*$"
+                                              },
                                               "retryable": {
                                                 "type": "boolean"
                                               }
@@ -74552,6 +75142,14 @@
                                           "reasoningLevel": {
                                             "type": "string",
                                             "minLength": 1
+                                          },
+                                          "speed": {
+                                            "type": "string",
+                                            "enum": [
+                                              "standard",
+                                              "fast",
+                                              "ultrafast"
+                                            ]
                                           }
                                         },
                                         "additionalProperties": false
@@ -74806,6 +75404,36 @@
                               "usage": {
                                 "type": "object",
                                 "properties": {
+                                  "modelSpeed": {
+                                    "type": "object",
+                                    "properties": {
+                                      "requestedServiceTier": {
+                                        "type": "string",
+                                        "enum": [
+                                          "default",
+                                          "fast",
+                                          "priority",
+                                          "ultrafast"
+                                        ]
+                                      },
+                                      "actualServiceTier": {
+                                        "type": "string",
+                                        "enum": [
+                                          "default",
+                                          "fast",
+                                          "priority",
+                                          "ultrafast"
+                                        ]
+                                      },
+                                      "downgraded": {
+                                        "type": "boolean"
+                                      }
+                                    },
+                                    "required": [
+                                      "requestedServiceTier"
+                                    ],
+                                    "additionalProperties": false
+                                  },
                                   "contextWindow": {
                                     "anyOf": [
                                       {
@@ -75576,6 +76204,14 @@
                                                 "reasoningLevel": {
                                                   "type": "string",
                                                   "minLength": 1
+                                                },
+                                                "speed": {
+                                                  "type": "string",
+                                                  "enum": [
+                                                    "standard",
+                                                    "fast",
+                                                    "ultrafast"
+                                                  ]
                                                 }
                                               },
                                               "additionalProperties": false
@@ -81189,6 +81825,12 @@
                                               "minLength": 1,
                                               "maxLength": 160
                                             },
+                                            "providerIncompleteReason": {
+                                              "type": "string",
+                                              "minLength": 1,
+                                              "maxLength": 64,
+                                              "pattern": "^[a-z][a-z0-9_]*$"
+                                            },
                                             "retryable": {
                                               "type": "boolean"
                                             }
@@ -81637,6 +82279,14 @@
                                         "reasoningLevel": {
                                           "type": "string",
                                           "minLength": 1
+                                        },
+                                        "speed": {
+                                          "type": "string",
+                                          "enum": [
+                                            "standard",
+                                            "fast",
+                                            "ultrafast"
+                                          ]
                                         }
                                       },
                                       "additionalProperties": false
@@ -81892,6 +82542,36 @@
                             "usage": {
                               "type": "object",
                               "properties": {
+                                "modelSpeed": {
+                                  "type": "object",
+                                  "properties": {
+                                    "requestedServiceTier": {
+                                      "type": "string",
+                                      "enum": [
+                                        "default",
+                                        "fast",
+                                        "priority",
+                                        "ultrafast"
+                                      ]
+                                    },
+                                    "actualServiceTier": {
+                                      "type": "string",
+                                      "enum": [
+                                        "default",
+                                        "fast",
+                                        "priority",
+                                        "ultrafast"
+                                      ]
+                                    },
+                                    "downgraded": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "required": [
+                                    "requestedServiceTier"
+                                  ],
+                                  "additionalProperties": false
+                                },
                                 "contextWindow": {
                                   "anyOf": [
                                     {
@@ -82662,6 +83342,14 @@
                                               "reasoningLevel": {
                                                 "type": "string",
                                                 "minLength": 1
+                                              },
+                                              "speed": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "standard",
+                                                  "fast",
+                                                  "ultrafast"
+                                                ]
                                               }
                                             },
                                             "additionalProperties": false
@@ -108278,6 +108966,12 @@
                                                         "minLength": 1,
                                                         "maxLength": 160
                                                       },
+                                                      "providerIncompleteReason": {
+                                                        "type": "string",
+                                                        "minLength": 1,
+                                                        "maxLength": 64,
+                                                        "pattern": "^[a-z][a-z0-9_]*$"
+                                                      },
                                                       "retryable": {
                                                         "type": "boolean"
                                                       }
@@ -108722,6 +109416,14 @@
                                                   "reasoningLevel": {
                                                     "type": "string",
                                                     "minLength": 1
+                                                  },
+                                                  "speed": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "standard",
+                                                      "fast",
+                                                      "ultrafast"
+                                                    ]
                                                   }
                                                 },
                                                 "additionalProperties": false
@@ -108976,6 +109678,36 @@
                                       "usage": {
                                         "type": "object",
                                         "properties": {
+                                          "modelSpeed": {
+                                            "type": "object",
+                                            "properties": {
+                                              "requestedServiceTier": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "default",
+                                                  "fast",
+                                                  "priority",
+                                                  "ultrafast"
+                                                ]
+                                              },
+                                              "actualServiceTier": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "default",
+                                                  "fast",
+                                                  "priority",
+                                                  "ultrafast"
+                                                ]
+                                              },
+                                              "downgraded": {
+                                                "type": "boolean"
+                                              }
+                                            },
+                                            "required": [
+                                              "requestedServiceTier"
+                                            ],
+                                            "additionalProperties": false
+                                          },
                                           "contextWindow": {
                                             "anyOf": [
                                               {
@@ -109746,6 +110478,14 @@
                                                         "reasoningLevel": {
                                                           "type": "string",
                                                           "minLength": 1
+                                                        },
+                                                        "speed": {
+                                                          "type": "string",
+                                                          "enum": [
+                                                            "standard",
+                                                            "fast",
+                                                            "ultrafast"
+                                                          ]
                                                         }
                                                       },
                                                       "additionalProperties": false
@@ -115333,6 +116073,12 @@
           "minLength": 1,
           "maxLength": 160
         },
+        "providerIncompleteReason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
         "retryable": {
           "type": "boolean"
         }
@@ -117203,6 +117949,14 @@
             "reasoningLevel": {
               "type": "string",
               "minLength": 1
+            },
+            "speed": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "fast",
+                "ultrafast"
+              ]
             }
           },
           "additionalProperties": false
@@ -122417,6 +123171,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -123354,6 +124116,14 @@
                       "reasoningLevel": {
                         "type": "string",
                         "minLength": 1
+                      },
+                      "speed": {
+                        "type": "string",
+                        "enum": [
+                          "standard",
+                          "fast",
+                          "ultrafast"
+                        ]
                       }
                     },
                     "additionalProperties": false
@@ -124050,6 +124820,12 @@
                                           "minLength": 1,
                                           "maxLength": 160
                                         },
+                                        "providerIncompleteReason": {
+                                          "type": "string",
+                                          "minLength": 1,
+                                          "maxLength": 64,
+                                          "pattern": "^[a-z][a-z0-9_]*$"
+                                        },
                                         "retryable": {
                                           "type": "boolean"
                                         }
@@ -124498,6 +125274,14 @@
                                     "reasoningLevel": {
                                       "type": "string",
                                       "minLength": 1
+                                    },
+                                    "speed": {
+                                      "type": "string",
+                                      "enum": [
+                                        "standard",
+                                        "fast",
+                                        "ultrafast"
+                                      ]
                                     }
                                   },
                                   "additionalProperties": false
@@ -124753,6 +125537,36 @@
                         "usage": {
                           "type": "object",
                           "properties": {
+                            "modelSpeed": {
+                              "type": "object",
+                              "properties": {
+                                "requestedServiceTier": {
+                                  "type": "string",
+                                  "enum": [
+                                    "default",
+                                    "fast",
+                                    "priority",
+                                    "ultrafast"
+                                  ]
+                                },
+                                "actualServiceTier": {
+                                  "type": "string",
+                                  "enum": [
+                                    "default",
+                                    "fast",
+                                    "priority",
+                                    "ultrafast"
+                                  ]
+                                },
+                                "downgraded": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "requestedServiceTier"
+                              ],
+                              "additionalProperties": false
+                            },
                             "contextWindow": {
                               "anyOf": [
                                 {
@@ -125523,6 +126337,14 @@
                                           "reasoningLevel": {
                                             "type": "string",
                                             "minLength": 1
+                                          },
+                                          "speed": {
+                                            "type": "string",
+                                            "enum": [
+                                              "standard",
+                                              "fast",
+                                              "ultrafast"
+                                            ]
                                           }
                                         },
                                         "additionalProperties": false
@@ -151139,6 +151961,12 @@
                                                     "minLength": 1,
                                                     "maxLength": 160
                                                   },
+                                                  "providerIncompleteReason": {
+                                                    "type": "string",
+                                                    "minLength": 1,
+                                                    "maxLength": 64,
+                                                    "pattern": "^[a-z][a-z0-9_]*$"
+                                                  },
                                                   "retryable": {
                                                     "type": "boolean"
                                                   }
@@ -151583,6 +152411,14 @@
                                               "reasoningLevel": {
                                                 "type": "string",
                                                 "minLength": 1
+                                              },
+                                              "speed": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "standard",
+                                                  "fast",
+                                                  "ultrafast"
+                                                ]
                                               }
                                             },
                                             "additionalProperties": false
@@ -151837,6 +152673,36 @@
                                   "usage": {
                                     "type": "object",
                                     "properties": {
+                                      "modelSpeed": {
+                                        "type": "object",
+                                        "properties": {
+                                          "requestedServiceTier": {
+                                            "type": "string",
+                                            "enum": [
+                                              "default",
+                                              "fast",
+                                              "priority",
+                                              "ultrafast"
+                                            ]
+                                          },
+                                          "actualServiceTier": {
+                                            "type": "string",
+                                            "enum": [
+                                              "default",
+                                              "fast",
+                                              "priority",
+                                              "ultrafast"
+                                            ]
+                                          },
+                                          "downgraded": {
+                                            "type": "boolean"
+                                          }
+                                        },
+                                        "required": [
+                                          "requestedServiceTier"
+                                        ],
+                                        "additionalProperties": false
+                                      },
                                       "contextWindow": {
                                         "anyOf": [
                                           {
@@ -152607,6 +153473,14 @@
                                                     "reasoningLevel": {
                                                       "type": "string",
                                                       "minLength": 1
+                                                    },
+                                                    "speed": {
+                                                      "type": "string",
+                                                      "enum": [
+                                                        "standard",
+                                                        "fast",
+                                                        "ultrafast"
+                                                      ]
                                                     }
                                                   },
                                                   "additionalProperties": false
@@ -159415,6 +160289,12 @@
                                                   "minLength": 1,
                                                   "maxLength": 160
                                                 },
+                                                "providerIncompleteReason": {
+                                                  "type": "string",
+                                                  "minLength": 1,
+                                                  "maxLength": 64,
+                                                  "pattern": "^[a-z][a-z0-9_]*$"
+                                                },
                                                 "retryable": {
                                                   "type": "boolean"
                                                 }
@@ -159863,6 +160743,14 @@
                                             "reasoningLevel": {
                                               "type": "string",
                                               "minLength": 1
+                                            },
+                                            "speed": {
+                                              "type": "string",
+                                              "enum": [
+                                                "standard",
+                                                "fast",
+                                                "ultrafast"
+                                              ]
                                             }
                                           },
                                           "additionalProperties": false
@@ -160118,6 +161006,36 @@
                                 "usage": {
                                   "type": "object",
                                   "properties": {
+                                    "modelSpeed": {
+                                      "type": "object",
+                                      "properties": {
+                                        "requestedServiceTier": {
+                                          "type": "string",
+                                          "enum": [
+                                            "default",
+                                            "fast",
+                                            "priority",
+                                            "ultrafast"
+                                          ]
+                                        },
+                                        "actualServiceTier": {
+                                          "type": "string",
+                                          "enum": [
+                                            "default",
+                                            "fast",
+                                            "priority",
+                                            "ultrafast"
+                                          ]
+                                        },
+                                        "downgraded": {
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "required": [
+                                        "requestedServiceTier"
+                                      ],
+                                      "additionalProperties": false
+                                    },
                                     "contextWindow": {
                                       "anyOf": [
                                         {
@@ -160888,6 +161806,14 @@
                                                   "reasoningLevel": {
                                                     "type": "string",
                                                     "minLength": 1
+                                                  },
+                                                  "speed": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "standard",
+                                                      "fast",
+                                                      "ultrafast"
+                                                    ]
                                                   }
                                                 },
                                                 "additionalProperties": false
@@ -186504,6 +187430,12 @@
                                                             "minLength": 1,
                                                             "maxLength": 160
                                                           },
+                                                          "providerIncompleteReason": {
+                                                            "type": "string",
+                                                            "minLength": 1,
+                                                            "maxLength": 64,
+                                                            "pattern": "^[a-z][a-z0-9_]*$"
+                                                          },
                                                           "retryable": {
                                                             "type": "boolean"
                                                           }
@@ -186948,6 +187880,14 @@
                                                       "reasoningLevel": {
                                                         "type": "string",
                                                         "minLength": 1
+                                                      },
+                                                      "speed": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                          "standard",
+                                                          "fast",
+                                                          "ultrafast"
+                                                        ]
                                                       }
                                                     },
                                                     "additionalProperties": false
@@ -187202,6 +188142,36 @@
                                           "usage": {
                                             "type": "object",
                                             "properties": {
+                                              "modelSpeed": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "requestedServiceTier": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "default",
+                                                      "fast",
+                                                      "priority",
+                                                      "ultrafast"
+                                                    ]
+                                                  },
+                                                  "actualServiceTier": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                      "default",
+                                                      "fast",
+                                                      "priority",
+                                                      "ultrafast"
+                                                    ]
+                                                  },
+                                                  "downgraded": {
+                                                    "type": "boolean"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "requestedServiceTier"
+                                                ],
+                                                "additionalProperties": false
+                                              },
                                               "contextWindow": {
                                                 "anyOf": [
                                                   {
@@ -187972,6 +188942,14 @@
                                                             "reasoningLevel": {
                                                               "type": "string",
                                                               "minLength": 1
+                                                            },
+                                                            "speed": {
+                                                              "type": "string",
+                                                              "enum": [
+                                                                "standard",
+                                                                "fast",
+                                                                "ultrafast"
+                                                              ]
                                                             }
                                                           },
                                                           "additionalProperties": false
@@ -202211,6 +203189,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -202596,6 +203582,12 @@
                       "minLength": 1,
                       "maxLength": 160
                     },
+                    "providerIncompleteReason": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    },
                     "retryable": {
                       "type": "boolean"
                     }
@@ -202769,6 +203761,12 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 160
+            },
+            "providerIncompleteReason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[a-z][a-z0-9_]*$"
             },
             "retryable": {
               "type": "boolean"
@@ -203227,6 +204225,36 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
       "properties": {
+        "modelSpeed": {
+          "type": "object",
+          "properties": {
+            "requestedServiceTier": {
+              "type": "string",
+              "enum": [
+                "default",
+                "fast",
+                "priority",
+                "ultrafast"
+              ]
+            },
+            "actualServiceTier": {
+              "type": "string",
+              "enum": [
+                "default",
+                "fast",
+                "priority",
+                "ultrafast"
+              ]
+            },
+            "downgraded": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "requestedServiceTier"
+          ],
+          "additionalProperties": false
+        },
         "contextWindow": {
           "anyOf": [
             {
@@ -206163,6 +207191,12 @@
                           "minLength": 1,
                           "maxLength": 160
                         },
+                        "providerIncompleteReason": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 64,
+                          "pattern": "^[a-z][a-z0-9_]*$"
+                        },
                         "retryable": {
                           "type": "boolean"
                         }
@@ -206607,6 +207641,14 @@
                     "reasoningLevel": {
                       "type": "string",
                       "minLength": 1
+                    },
+                    "speed": {
+                      "type": "string",
+                      "enum": [
+                        "standard",
+                        "fast",
+                        "ultrafast"
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -206861,6 +207903,36 @@
         "usage": {
           "type": "object",
           "properties": {
+            "modelSpeed": {
+              "type": "object",
+              "properties": {
+                "requestedServiceTier": {
+                  "type": "string",
+                  "enum": [
+                    "default",
+                    "fast",
+                    "priority",
+                    "ultrafast"
+                  ]
+                },
+                "actualServiceTier": {
+                  "type": "string",
+                  "enum": [
+                    "default",
+                    "fast",
+                    "priority",
+                    "ultrafast"
+                  ]
+                },
+                "downgraded": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "requestedServiceTier"
+              ],
+              "additionalProperties": false
+            },
             "contextWindow": {
               "anyOf": [
                 {
@@ -207631,6 +208703,14 @@
                           "reasoningLevel": {
                             "type": "string",
                             "minLength": 1
+                          },
+                          "speed": {
+                            "type": "string",
+                            "enum": [
+                              "standard",
+                              "fast",
+                              "ultrafast"
+                            ]
                           }
                         },
                         "additionalProperties": false
@@ -237990,6 +239070,12 @@
                               "minLength": 1,
                               "maxLength": 160
                             },
+                            "providerIncompleteReason": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 64,
+                              "pattern": "^[a-z][a-z0-9_]*$"
+                            },
                             "retryable": {
                               "type": "boolean"
                             }
@@ -238686,6 +239772,14 @@
                               "reasoningLevel": {
                                 "type": "string",
                                 "minLength": 1
+                              },
+                              "speed": {
+                                "type": "string",
+                                "enum": [
+                                  "standard",
+                                  "fast",
+                                  "ultrafast"
+                                ]
                               }
                             },
                             "additionalProperties": false
@@ -243204,7 +244298,8 @@
                     "migrationSource": {
                       "type": "string",
                       "enum": [
-                        "claudeCode"
+                        "claudeCode",
+                        "codex"
                       ]
                     },
                     "forkedFromTaskId": {
@@ -243327,6 +244422,12 @@
                               "type": "string",
                               "minLength": 1,
                               "maxLength": 160
+                            },
+                            "providerIncompleteReason": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 64,
+                              "pattern": "^[a-z][a-z0-9_]*$"
                             },
                             "retryable": {
                               "type": "boolean"
@@ -243985,7 +245086,8 @@
                               "migrationSource": {
                                 "type": "string",
                                 "enum": [
-                                  "claudeCode"
+                                  "claudeCode",
+                                  "codex"
                                 ]
                               },
                               "forkedFromTaskId": {
@@ -244108,6 +245210,12 @@
                                         "type": "string",
                                         "minLength": 1,
                                         "maxLength": 160
+                                      },
+                                      "providerIncompleteReason": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 64,
+                                        "pattern": "^[a-z][a-z0-9_]*$"
                                       },
                                       "retryable": {
                                         "type": "boolean"
@@ -244700,7 +245808,8 @@
                                   "migrationSource": {
                                     "type": "string",
                                     "enum": [
-                                      "claudeCode"
+                                      "claudeCode",
+                                      "codex"
                                     ]
                                   },
                                   "forkedFromTaskId": {
@@ -244823,6 +245932,12 @@
                                             "type": "string",
                                             "minLength": 1,
                                             "maxLength": 160
+                                          },
+                                          "providerIncompleteReason": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 64,
+                                            "pattern": "^[a-z][a-z0-9_]*$"
                                           },
                                           "retryable": {
                                             "type": "boolean"
@@ -245453,7 +246568,8 @@
             "migrationSource": {
               "type": "string",
               "enum": [
-                "claudeCode"
+                "claudeCode",
+                "codex"
               ]
             },
             "forkedFromTaskId": {
@@ -245576,6 +246692,12 @@
                       "type": "string",
                       "minLength": 1,
                       "maxLength": 160
+                    },
+                    "providerIncompleteReason": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 64,
+                      "pattern": "^[a-z][a-z0-9_]*$"
                     },
                     "retryable": {
                       "type": "boolean"
@@ -246148,7 +247270,8 @@
                   "migrationSource": {
                     "type": "string",
                     "enum": [
-                      "claudeCode"
+                      "claudeCode",
+                      "codex"
                     ]
                   },
                   "forkedFromTaskId": {
@@ -246271,6 +247394,12 @@
                             "type": "string",
                             "minLength": 1,
                             "maxLength": 160
+                          },
+                          "providerIncompleteReason": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 64,
+                            "pattern": "^[a-z][a-z0-9_]*$"
                           },
                           "retryable": {
                             "type": "boolean"
@@ -253048,6 +254177,14 @@
                     "reasoningLevel": {
                       "type": "string",
                       "minLength": 1
+                    },
+                    "speed": {
+                      "type": "string",
+                      "enum": [
+                        "standard",
+                        "fast",
+                        "ultrafast"
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -253097,6 +254234,14 @@
                     "reasoningLevel": {
                       "type": "string",
                       "minLength": 1
+                    },
+                    "speed": {
+                      "type": "string",
+                      "enum": [
+                        "standard",
+                        "fast",
+                        "ultrafast"
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -253393,6 +254538,14 @@
                     "reasoningLevel": {
                       "type": "string",
                       "minLength": 1
+                    },
+                    "speed": {
+                      "type": "string",
+                      "enum": [
+                        "standard",
+                        "fast",
+                        "ultrafast"
+                      ]
                     }
                   },
                   "additionalProperties": false
@@ -253614,6 +254767,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -253744,6 +254905,14 @@
                         "reasoningLevel": {
                           "type": "string",
                           "minLength": 1
+                        },
+                        "speed": {
+                          "type": "string",
+                          "enum": [
+                            "standard",
+                            "fast",
+                            "ultrafast"
+                          ]
                         }
                       },
                       "additionalProperties": false
@@ -254453,6 +255622,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -254685,6 +255862,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -254802,6 +255987,14 @@
                         "reasoningLevel": {
                           "type": "string",
                           "minLength": 1
+                        },
+                        "speed": {
+                          "type": "string",
+                          "enum": [
+                            "standard",
+                            "fast",
+                            "ultrafast"
+                          ]
                         }
                       },
                       "additionalProperties": false
@@ -255090,6 +256283,14 @@
                 "reasoningLevel": {
                   "type": "string",
                   "minLength": 1
+                },
+                "speed": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "fast",
+                    "ultrafast"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -255207,6 +256408,14 @@
                         "reasoningLevel": {
                           "type": "string",
                           "minLength": 1
+                        },
+                        "speed": {
+                          "type": "string",
+                          "enum": [
+                            "standard",
+                            "fast",
+                            "ultrafast"
+                          ]
                         }
                       },
                       "additionalProperties": false
