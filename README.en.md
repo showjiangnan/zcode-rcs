@@ -10,6 +10,8 @@ The shared model menu includes reasoning and speed sliders, defaulting to Standa
 
 ChatGPT subscription models use an existing desktop connection. Remote clients can read safe status and public model capabilities and refresh the catalog; sign-in and account management stay on Desktop. Shared errors retain bounded incomplete reasons without raw responses or credentials. External imports are performed on Desktop; remote clients may read and continue imported sessions within the original granted workspace. This bundle pairs with desktop v3.15.2-feiyu.1 and includes SuggestedPrompt global/per-conversation controls, consent, and bounded candidate projections. The existing desktop runtime generates candidates; mobile adoption creates an editable draft, and reconnection does not generate a new candidate.
 
+A Codex-style prompt predictor; limited by the model's own capabilities and speed, it may not match Codex's prediction efficiency.
+
 ## Validation and platform scope
 
 This update synchronizes production shared Web, SDK and protocol assets and runs protocol/asset integration and Python-bridge regressions; browser interaction evidence remains historical. CUA preview stacking and closure handling remain local desktop capabilities; remote browsers receive no native preview-frame, OS-permission or private-credential interface. Mac results do not validate the current Windows native build or real devices. The paired desktop release provides macOS arm64 only. Windows users must compile it themselves; no Windows installer is provided. Public-cloud TLS, physical-phone keyboards and all third-party services still require environment-specific validation.
@@ -53,7 +55,7 @@ The container exposes port 8030 on loopback only. Include [the Nginx example](de
 | Responsive conversations     | Shared desktop React Root and components, mobile/desktop layouts, independent bridge authentication                                    |
 | Sessions and orchestration   | Same desktop runtime and command admission, standard/coordinator/swarm, history, permissions, stop and recovery                        |
 | Memory, workflows and images | Existing Host services and settings; image/model providers remain configured on the execution computer                                 |
-| Suggested prompts | Desktop global control and per-conversation consent; existing Runtime generation, editable mobile drafts, no regeneration on reconnect |
+| Suggested prompts            | Desktop global control and per-conversation consent; existing Runtime generation, editable mobile drafts, no regeneration on reconnect |
 | Files and artifacts          | Host path validation, existing transactional attachment uploads, bounded media ranges, content-hash guarded text editing API           |
 | Terminal recovery            | Host-owned PTYs, reconnect to the same ID, bounded sequence replay and deduplication; disconnect does not kill the shell               |
 | Public integrations          | REST control plane, explicit RPC allowlist and schemas, standalone SDK with injectable fetch/WebSocket transport                       |

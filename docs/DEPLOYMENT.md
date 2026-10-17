@@ -4,14 +4,14 @@ Use Python 3.12+, the checked-in `uv.lock`, a dedicated HTTPS origin root and on
 
 ## Environment
 
-| Variable | Meaning |
-| --- | --- |
-| RCS_PUBLIC_ORIGIN | Required exact public HTTPS origin; no credentials, query, fragment or extra path |
-| RCS_KEYS_FILE | Server identity digest JSON, default data/keys.json |
-| RCS_DATA_DIR | Authentication SQLite directory, default data; retain between restarts |
-| RCS_WEB_DIR | Matching production Web bundle, default web |
-| RCS_SESSION_SECONDS | Sliding expiry 60–86400 seconds; default 3600; absolute limit 30 days |
-| RCS_ALLOW_LOOPBACK_HTTP | Set 1 only for localhost/127.0.0.1/::1 development |
+| Variable                | Meaning                                                                           |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| RCS_PUBLIC_ORIGIN       | Required exact public HTTPS origin; no credentials, query, fragment or extra path |
+| RCS_KEYS_FILE           | Server identity digest JSON, default data/keys.json                               |
+| RCS_DATA_DIR            | Authentication SQLite directory, default data; retain between restarts            |
+| RCS_WEB_DIR             | Matching production Web bundle, default web                                       |
+| RCS_SESSION_SECONDS     | Sliding expiry 60–86400 seconds; default 3600; absolute limit 30 days             |
+| RCS_ALLOW_LOOPBACK_HTTP | Set 1 only for localhost/127.0.0.1/::1 development                                |
 
 Generate secrets with `uv run zcode-rcs keygen --output data/keys.json --secret-output data/owner.key`. Never commit either file. Provide only `keys.json` to the server process/container; use the plaintext file only on authorized clients. A self-selected key must be high entropy and 32–512 characters. Plain passwords are not supported by the SHA-256 key format.
 
