@@ -1976,6 +1976,7 @@
         "type": {
           "type": "string",
           "enum": [
+            "setSuggestedPromptEnabled",
             "createSession",
             "createSelectionSideSession",
             "sendText",
@@ -3221,6 +3222,7 @@
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "string",
       "enum": [
+        "setSuggestedPromptEnabled",
         "createSession",
         "createSelectionSideSession",
         "sendText",
@@ -18880,6 +18882,48 @@
                     }
                   ]
                 },
+                "suggestedPrompt": {
+                  "type": "object",
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "available": {
+                      "type": "boolean"
+                    },
+                    "revision": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "phase": {
+                      "type": "string",
+                      "enum": [
+                        "off",
+                        "waiting",
+                        "generating",
+                        "ready",
+                        "failed"
+                      ]
+                    },
+                    "sourceTurnId": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "suggestion": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 600
+                    }
+                  },
+                  "required": [
+                    "enabled",
+                    "available",
+                    "revision",
+                    "phase"
+                  ],
+                  "additionalProperties": false
+                },
                 "availability": {
                   "type": "object",
                   "properties": {
@@ -34108,6 +34152,48 @@
             }
           ]
         },
+        "suggestedPrompt": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "available": {
+              "type": "boolean"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "phase": {
+              "type": "string",
+              "enum": [
+                "off",
+                "waiting",
+                "generating",
+                "ready",
+                "failed"
+              ]
+            },
+            "sourceTurnId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "suggestion": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "required": [
+            "enabled",
+            "available",
+            "revision",
+            "phase"
+          ],
+          "additionalProperties": false
+        },
         "config": {
           "type": "object",
           "properties": {
@@ -47984,6 +48070,48 @@
                           "additionalProperties": false
                         }
                       ]
+                    },
+                    "suggestedPrompt": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "available": {
+                          "type": "boolean"
+                        },
+                        "revision": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "phase": {
+                          "type": "string",
+                          "enum": [
+                            "off",
+                            "waiting",
+                            "generating",
+                            "ready",
+                            "failed"
+                          ]
+                        },
+                        "sourceTurnId": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "suggestion": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 600
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "available",
+                        "revision",
+                        "phase"
+                      ],
+                      "additionalProperties": false
                     },
                     "config": {
                       "type": "object",
@@ -74810,6 +74938,48 @@
                                   }
                                 ]
                               },
+                              "suggestedPrompt": {
+                                "type": "object",
+                                "properties": {
+                                  "enabled": {
+                                    "type": "boolean"
+                                  },
+                                  "available": {
+                                    "type": "boolean"
+                                  },
+                                  "revision": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "phase": {
+                                    "type": "string",
+                                    "enum": [
+                                      "off",
+                                      "waiting",
+                                      "generating",
+                                      "ready",
+                                      "failed"
+                                    ]
+                                  },
+                                  "sourceTurnId": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  },
+                                  "suggestion": {
+                                    "type": "string",
+                                    "minLength": 1,
+                                    "maxLength": 600
+                                  }
+                                },
+                                "required": [
+                                  "enabled",
+                                  "available",
+                                  "revision",
+                                  "phase"
+                                ],
+                                "additionalProperties": false
+                              },
                               "availability": {
                                 "type": "object",
                                 "properties": {
@@ -82258,6 +82428,48 @@
                                   "additionalProperties": false
                                 }
                               ]
+                            },
+                            "suggestedPrompt": {
+                              "type": "object",
+                              "properties": {
+                                "enabled": {
+                                  "type": "boolean"
+                                },
+                                "available": {
+                                  "type": "boolean"
+                                },
+                                "revision": {
+                                  "type": "integer",
+                                  "minimum": 0,
+                                  "maximum": 9007199254740991
+                                },
+                                "phase": {
+                                  "type": "string",
+                                  "enum": [
+                                    "off",
+                                    "waiting",
+                                    "generating",
+                                    "ready",
+                                    "failed"
+                                  ]
+                                },
+                                "sourceTurnId": {
+                                  "type": "string",
+                                  "minLength": 1
+                                },
+                                "suggestion": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 600
+                                }
+                              },
+                              "required": [
+                                "enabled",
+                                "available",
+                                "revision",
+                                "phase"
+                              ],
+                              "additionalProperties": false
                             },
                             "config": {
                               "type": "object",
@@ -109084,6 +109296,48 @@
                                           }
                                         ]
                                       },
+                                      "suggestedPrompt": {
+                                        "type": "object",
+                                        "properties": {
+                                          "enabled": {
+                                            "type": "boolean"
+                                          },
+                                          "available": {
+                                            "type": "boolean"
+                                          },
+                                          "revision": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 9007199254740991
+                                          },
+                                          "phase": {
+                                            "type": "string",
+                                            "enum": [
+                                              "off",
+                                              "waiting",
+                                              "generating",
+                                              "ready",
+                                              "failed"
+                                            ]
+                                          },
+                                          "sourceTurnId": {
+                                            "type": "string",
+                                            "minLength": 1
+                                          },
+                                          "suggestion": {
+                                            "type": "string",
+                                            "minLength": 1,
+                                            "maxLength": 600
+                                          }
+                                        },
+                                        "required": [
+                                          "enabled",
+                                          "available",
+                                          "revision",
+                                          "phase"
+                                        ],
+                                        "additionalProperties": false
+                                      },
                                       "availability": {
                                         "type": "object",
                                         "properties": {
@@ -116371,6 +116625,9 @@
             "independentPlanState": {
               "type": "boolean"
             },
+            "suggestedPrompt": {
+              "type": "boolean"
+            },
             "workflowRunDeltas": {
               "type": "boolean"
             }
@@ -116773,6 +117030,9 @@
           "type": "boolean"
         },
         "independentPlanState": {
+          "type": "boolean"
+        },
+        "suggestedPrompt": {
           "type": "boolean"
         },
         "workflowRunDeltas": {
@@ -125253,6 +125513,48 @@
                               "additionalProperties": false
                             }
                           ]
+                        },
+                        "suggestedPrompt": {
+                          "type": "object",
+                          "properties": {
+                            "enabled": {
+                              "type": "boolean"
+                            },
+                            "available": {
+                              "type": "boolean"
+                            },
+                            "revision": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "phase": {
+                              "type": "string",
+                              "enum": [
+                                "off",
+                                "waiting",
+                                "generating",
+                                "ready",
+                                "failed"
+                              ]
+                            },
+                            "sourceTurnId": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "suggestion": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 600
+                            }
+                          },
+                          "required": [
+                            "enabled",
+                            "available",
+                            "revision",
+                            "phase"
+                          ],
+                          "additionalProperties": false
                         },
                         "config": {
                           "type": "object",
@@ -152079,6 +152381,48 @@
                                       }
                                     ]
                                   },
+                                  "suggestedPrompt": {
+                                    "type": "object",
+                                    "properties": {
+                                      "enabled": {
+                                        "type": "boolean"
+                                      },
+                                      "available": {
+                                        "type": "boolean"
+                                      },
+                                      "revision": {
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 9007199254740991
+                                      },
+                                      "phase": {
+                                        "type": "string",
+                                        "enum": [
+                                          "off",
+                                          "waiting",
+                                          "generating",
+                                          "ready",
+                                          "failed"
+                                        ]
+                                      },
+                                      "sourceTurnId": {
+                                        "type": "string",
+                                        "minLength": 1
+                                      },
+                                      "suggestion": {
+                                        "type": "string",
+                                        "minLength": 1,
+                                        "maxLength": 600
+                                      }
+                                    },
+                                    "required": [
+                                      "enabled",
+                                      "available",
+                                      "revision",
+                                      "phase"
+                                    ],
+                                    "additionalProperties": false
+                                  },
                                   "availability": {
                                     "type": "object",
                                     "properties": {
@@ -160722,6 +161066,48 @@
                                       "additionalProperties": false
                                     }
                                   ]
+                                },
+                                "suggestedPrompt": {
+                                  "type": "object",
+                                  "properties": {
+                                    "enabled": {
+                                      "type": "boolean"
+                                    },
+                                    "available": {
+                                      "type": "boolean"
+                                    },
+                                    "revision": {
+                                      "type": "integer",
+                                      "minimum": 0,
+                                      "maximum": 9007199254740991
+                                    },
+                                    "phase": {
+                                      "type": "string",
+                                      "enum": [
+                                        "off",
+                                        "waiting",
+                                        "generating",
+                                        "ready",
+                                        "failed"
+                                      ]
+                                    },
+                                    "sourceTurnId": {
+                                      "type": "string",
+                                      "minLength": 1
+                                    },
+                                    "suggestion": {
+                                      "type": "string",
+                                      "minLength": 1,
+                                      "maxLength": 600
+                                    }
+                                  },
+                                  "required": [
+                                    "enabled",
+                                    "available",
+                                    "revision",
+                                    "phase"
+                                  ],
+                                  "additionalProperties": false
                                 },
                                 "config": {
                                   "type": "object",
@@ -187548,6 +187934,48 @@
                                               }
                                             ]
                                           },
+                                          "suggestedPrompt": {
+                                            "type": "object",
+                                            "properties": {
+                                              "enabled": {
+                                                "type": "boolean"
+                                              },
+                                              "available": {
+                                                "type": "boolean"
+                                              },
+                                              "revision": {
+                                                "type": "integer",
+                                                "minimum": 0,
+                                                "maximum": 9007199254740991
+                                              },
+                                              "phase": {
+                                                "type": "string",
+                                                "enum": [
+                                                  "off",
+                                                  "waiting",
+                                                  "generating",
+                                                  "ready",
+                                                  "failed"
+                                                ]
+                                              },
+                                              "sourceTurnId": {
+                                                "type": "string",
+                                                "minLength": 1
+                                              },
+                                              "suggestion": {
+                                                "type": "string",
+                                                "minLength": 1,
+                                                "maxLength": 600
+                                              }
+                                            },
+                                            "required": [
+                                              "enabled",
+                                              "available",
+                                              "revision",
+                                              "phase"
+                                            ],
+                                            "additionalProperties": false
+                                          },
                                           "availability": {
                                             "type": "object",
                                             "properties": {
@@ -207308,6 +207736,48 @@
               "additionalProperties": false
             }
           ]
+        },
+        "suggestedPrompt": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "available": {
+              "type": "boolean"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "phase": {
+              "type": "string",
+              "enum": [
+                "off",
+                "waiting",
+                "generating",
+                "ready",
+                "failed"
+              ]
+            },
+            "sourceTurnId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "suggestion": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "required": [
+            "enabled",
+            "available",
+            "revision",
+            "phase"
+          ],
+          "additionalProperties": false
         },
         "availability": {
           "type": "object",
@@ -254094,6 +254564,19 @@
         "description"
       ]
     },
+    "command:setSuggestedPromptEnabled": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
     "command:createSession": {
       "$schema": "https://json-schema.org/draft/2020-12/schema",
       "type": "object",
@@ -254217,6 +254700,9 @@
         "config": {
           "type": "object",
           "properties": {
+            "suggestedPromptEnabled": {
+              "type": "boolean"
+            },
             "modelSelection": {
               "type": "object",
               "properties": {
